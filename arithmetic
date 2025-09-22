@@ -1,0 +1,7 @@
+% distance((X1,Y1),(X2,Y2),Dist).
+distance((X1,Y1), (X2,Y2), Dist) :-
+    DX is X2 - X1,
+    DY is Y2 - Y1,
+    Dist is sqrt(DX*DX + DY*DY).
+
+?- distance((0,0),(3,4),D).
