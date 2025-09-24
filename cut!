@@ -1,0 +1,66 @@
+%maximum of 3 numbers
+maximum(X,Y,X):-
+    X>Y,!.
+maximum(_,Y,Y).
+maximum(X,Y,Z,Max):-
+    maximum(X,Y,TempMax),
+    maximum(Z,TempMax,Max).
+
+    
+
+
+  ---------------------------------------------------------------------------------------
+minimum(X,Y,Y):-
+    Y<X,!.
+minimum(X,_,X).
+
+minimum(X,Y,Z,X):-
+    X<Y,X<Z,!.
+minimum(X,Y,Z,Y):-
+    Y<X,Y<Z,!.
+minimum(X,Y,Z,Z):-
+    Z<Y,Z<X,!.
+
+maximum(X,Y,Z,X):-
+    X>Y,X>Z,!.
+maximum(X,Y,Z,Y):-
+    Y>X,Y>Z,!.
+maximum(X,Y,Z,Z):-
+    Z>Y,Z>X,!.
+  ---------------------------------------------------------------------------------------
+%----------------factorial
+fact(0,1):-!.
+fact(X,F) :-
+    X>0,
+    X1 is X-1,
+    fact(X1,Temp),
+    F is X*Temp.
+?-fact(3,F).
+ ---------------------------------------------------------------------------------------
+  
+%---------------GCD
+gcd(X,0,X):-!.
+gcd(X,Y,G):-
+    Y>0,
+    R is X mod Y,
+    gcd(Y,R,G).
+?-gcd(21,7,G).
+  ---------------------------------------------------------------------------------------
+%------------Prime
+prime(N) :-
+    N>2,
+    \+ has_factor(N,2).
+has_factor(N,L):-
+  L*L =< N,
+    (N mod L =:=0 ; has_factor(N,L+1)).
+  
+  ?-prime(61).
+
+  %------------Leap Year---------------------------
+leap_year(Y):-
+    Y mod 400 =:= 0,!.
+leap_year(Y):-
+    Y mod 4 =:= 0,
+    Y mod 100 =\= 0.
+?-leap_year(2024).
+  
