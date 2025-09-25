@@ -1,0 +1,20 @@
+sum_list([],0).
+sum_list([H|T],Sum):-
+    sum_list(T,TailSum),
+    Sum is H+TailSum.
+
+% Base case: empty list has length 0
+list_length([], 0).
+
+% Recursive case: [H|T] has length 1 + length of T
+list_length([_|T], Length) :-
+    list_length(T, TailLength),
+    Length is TailLength + 1.
+
+
+mean([X],X).
+mean([H|T],Mean):-
+    sum_list([H|T],Sum),
+    list_length([_|T],Length),
+    Mean is Sum/Length.
+    
